@@ -1,0 +1,7 @@
+map (void,v8::Undefined(),,,)
+map (int,v8::Integer::New(%v),%v->Int32Value(),,)
+map (bool,v8::Boolean::New(%v),%v->BooleanValue(),,)
+map (double,v8::Number::New(%v),%v->NumberValue(),,)
+map (float,v8::Number::New(%v),%v->NumberValue(),,)
+map (char*,v8::String::New(%v),*_%nv,,v8::String::Utf8Value _%nv(%v);)
+map (char,v8::Integer::New(%v),%v->Int32Value(),,)

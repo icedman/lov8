@@ -1,0 +1,24 @@
+AC_INIT([love], [0.5-0])
+AC_CONFIG_SRCDIR([src/love.cpp])
+AC_CONFIG_AUX_DIR([platform/unix])
+AM_INIT_AUTOMAKE([-Wall foreign])
+AC_PROG_LIBTOOL
+AC_PROG_CC
+AC_PROG_CXX
+AC_SEARCH_LIBS([sqrt], [m], [], AC_MSG_ERROR([Lua needs C math library]))
+AC_SEARCH_LIBS(
+	[lua_pcall],
+	[lua lua5.1],
+	if test "$ac_cv_search_lua_pcall" = "-llua5.1"; then
+		AC_SUBST([INCLUDE_LUA], [-I/usr/include/lua5.1])
+	fi,
+	AC_MSG_ERROR([Can't LÖVE without Lua])
+)
+prefix='/usr'
+bindir='${prefix}/bin'
+libdir='${prefix}/lib/love'
+AC_CONFIG_FILES([
+	Makefile
+	src/Makefile
+])
+AC_OUTPUT
